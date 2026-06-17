@@ -26,7 +26,7 @@ export async function analyzeImage(file) {
     return emptyAnalysisResult;
   }
   if (!API_BASE_URL) {
-    throw new Error("Configuration API manquante: VITE_API_BASE_URL doit pointer vers le backend Render.");
+    throw new Error("Configuration API manquante: VITE_API_BASE_URL doit pointer vers le backend Hugging Face Spaces.");
   }
 
   const formData = new FormData();

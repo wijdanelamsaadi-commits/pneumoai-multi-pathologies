@@ -63,37 +63,52 @@ Open:
 http://127.0.0.1:5173
 ```
 
-## Production Deployment
+## Production Deployment Without Credit Card
 
-The production React + FastAPI deployment uses:
+The recommended free deployment is:
 
+- Hugging Face Spaces Docker for `backend-api`
 - Vercel for `frontend-react`
-- Render for `backend-api`
 
-### Render Backend
+This avoids Render because Render may require a credit card for new web services.
 
-Create a new Render Web Service from this repository.
+### Hugging Face Spaces Backend
+
+Create a new Hugging Face Space.
 
 Use:
 
 ```text
-Repository: wijdanelamsaadi-commits/pneumoai-multi-pathologies
-Branch: main
-Build Command: pip install -r backend-api/requirements.txt
-Start Command: uvicorn main:app --app-dir backend-api --host 0.0.0.0 --port $PORT
+Space name: pneumoai-api
+SDK: Docker
+Visibility: Public
+Repository source: wijdanelamsaadi-commits/pneumoai-multi-pathologies
+Dockerfile path: Dockerfile
+```
+
+The Docker container starts FastAPI with:
+
+```text
+uvicorn main:app --app-dir backend-api --host 0.0.0.0 --port 7860
 ```
 
 Environment variables:
 
 ```text
-PYTHON_VERSION=3.11.9
-FRONTEND_ORIGINS=https://your-vercel-app.vercel.app
+PORT=7860
+FRONTEND_ORIGINS=https://pneumoai-pneumonia-detection.vercel.app
 ```
 
-After deployment, verify:
+Expected backend URL:
 
 ```text
-https://your-render-service.onrender.com/health
+https://YOUR-HF-USERNAME-pneumoai-api.hf.space
+```
+
+Verify:
+
+```text
+https://YOUR-HF-USERNAME-pneumoai-api.hf.space/health
 ```
 
 ### Vercel Frontend
@@ -113,14 +128,14 @@ Install Command: npm install
 Environment variable:
 
 ```text
-VITE_API_BASE_URL=https://your-render-service.onrender.com
+VITE_API_BASE_URL=https://YOUR-HF-USERNAME-pneumoai-api.hf.space
 ```
 
 After changing `VITE_API_BASE_URL`, redeploy the Vercel project.
 
 ### CORS
 
-Once the final Vercel URL is known, update Render:
+Once the final Vercel URL is known, update Hugging Face Spaces:
 
 ```text
 FRONTEND_ORIGINS=https://your-vercel-app.vercel.app

@@ -43,6 +43,16 @@ app.add_middleware(
 )
 
 
+@app.get("/")
+def root() -> dict[str, str]:
+    return {
+        "status": "ok",
+        "service": "PneumoAI FastAPI backend",
+        "docs": "/docs",
+        "health": "/health",
+    }
+
+
 def resolve_model_path() -> Path:
     if BINARY_MODEL_PATH.exists():
         return BINARY_MODEL_PATH
