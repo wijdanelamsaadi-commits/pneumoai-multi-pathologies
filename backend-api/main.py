@@ -28,7 +28,7 @@ app = FastAPI(
 def get_allowed_origins() -> list[str]:
     origins = os.getenv(
         "FRONTEND_ORIGINS",
-        "http://localhost:5173,http://127.0.0.1:5173",
+        "https://pneumoai-pneumonia-detection.vercel.app",
     )
     return [origin.strip() for origin in origins.split(",") if origin.strip()]
 

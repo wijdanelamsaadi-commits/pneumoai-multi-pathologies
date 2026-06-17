@@ -1,5 +1,4 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
-const API_URL = `${API_BASE_URL.replace(/\/$/, "")}/analyze`;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, "");
 
 export const emptyAnalysisResult = {
   fileName: "",
@@ -26,11 +25,14 @@ export async function analyzeImage(file) {
   if (!file) {
     return emptyAnalysisResult;
   }
+  if (!API_BASE_URL) {
+    throw new Error("Configuration API manquante: VITE_API_BASE_URL doit pointer vers le backend Render.");
+  }
 
   const formData = new FormData();
   formData.append("image", file);
 
-  const response = await fetch(API_URL, {
+  const response = await fetch(`${API_BASE_URL}/analyze`, {
     method: "POST",
     body: formData
   });
