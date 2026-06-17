@@ -3,9 +3,7 @@ import { jsPDF } from "jspdf";
 
 const orderedPathologies = [
   "Pneumonie",
-  "Normal",
-  "\u00c9panchement pleural",
-  "Consolidation"
+  "Normal"
 ];
 
 export default function AnalysisReportModal({ analysisDate, result, onClose }) {
@@ -133,5 +131,7 @@ function formatQuality(quality) {
 
 function formatPathology(pathology) {
   if (!pathology) return "Non disponible";
-  return `${pathology.probabilite}% - ${pathology.description}`;
+  const threshold = pathology.seuil !== null && pathology.seuil !== undefined ? ` - Seuil ${pathology.seuil}%` : "";
+  const status = pathology.statut ? ` - ${pathology.statut}` : "";
+  return `${pathology.probabilite}%${status}${threshold} - ${pathology.description}`;
 }

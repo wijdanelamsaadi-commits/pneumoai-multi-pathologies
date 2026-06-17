@@ -1,13 +1,6 @@
-import { Activity, CheckCircle2, Droplet, Stethoscope } from "lucide-react";
+import { CheckCircle2, Stethoscope } from "lucide-react";
 import { useApp } from "../contexts/AppContext.jsx";
 import LungIcon from "./LungIcon.jsx";
-
-const effusionConfig = {
-  icon: Droplet,
-  border: "border-orange-200",
-  bg: "bg-orange-50",
-  text: "text-[#f97316]"
-};
 
 const config = {
   Pneumonie: {
@@ -15,14 +8,6 @@ const config = {
     border: "border-red-200",
     bg: "bg-red-50",
     text: "text-danger"
-  },
-  "\u00c9panchement pleural": effusionConfig,
-  Consolidation: {
-    icon: LungIcon,
-    secondaryIcon: Activity,
-    border: "border-amber-200",
-    bg: "bg-amber-50",
-    text: "text-warning"
   },
   Normal: {
     icon: LungIcon,
@@ -46,6 +31,7 @@ export default function DiagnosisCard({ pathology }) {
   const SecondaryIcon = style.secondaryIcon;
   const hasPrediction = pathology.probabilite > 0;
   const level = levelFor(pathology.probabilite, t);
+  const status = pathology.statut;
 
   return (
     <article className={`rounded-lg border ${style.border} bg-white p-5 shadow-sm`}>
@@ -67,6 +53,17 @@ export default function DiagnosisCard({ pathology }) {
       <div className={`mx-auto mt-5 w-[82%] rounded-full px-4 py-2 text-center text-sm font-extrabold ${hasPrediction ? `badge-${level.color}` : "border border-blue-200 bg-blue-50 text-brand"}`}>
         {hasPrediction ? level.label : "Aucune analyse effectu\u00e9e"}
       </div>
+
+      {status && (
+        <div className={`mx-auto mt-3 w-[82%] rounded-full px-4 py-2 text-center text-sm font-black ${
+          status === "Positive"
+            ? "border border-red-200 bg-red-50 text-danger"
+            : "border border-green-200 bg-green-50 text-success"
+        }`}>
+          {status}
+          {pathology.seuil !== null && pathology.seuil !== undefined ? ` · Seuil ${pathology.seuil}%` : ""}
+        </div>
+      )}
 
       <div className="mt-5 h-2 overflow-hidden rounded-full bg-slate-100">
         <div

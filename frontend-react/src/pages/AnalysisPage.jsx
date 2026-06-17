@@ -97,7 +97,7 @@ export default function AnalysisPage() {
             {t("diagnosisTitle")}
           </h2>
         </div>
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-4 md:grid-cols-2">
           {result.pathologies.map((item) => (
             <DiagnosisCard key={item.nom} pathology={item} />
           ))}

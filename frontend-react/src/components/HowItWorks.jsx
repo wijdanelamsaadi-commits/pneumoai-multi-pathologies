@@ -1,32 +1,32 @@
 import { Brain, ShieldCheck, UploadCloud } from "lucide-react";
 import { useApp } from "../contexts/AppContext.jsx";
 
-const steps = [
-  {
-    number: "1",
-    title: "Upload",
-    icon: UploadCloud,
-    text: "Uploadez une radiographie thoracique (JPEG ou PNG).",
-    color: "blue"
-  },
-  {
-    number: "2",
-    title: "Analyse",
-    icon: Brain,
-    text: "Le système évalue la qualité de l'image et détecte les pathologies",
-    color: "blue"
-  },
-  {
-    number: "3",
-    title: "Décision",
-    icon: ShieldCheck,
-    text: "Diagnostic multi-pathologies avec niveau de confiance et recommandation",
-    color: "green"
-  }
-];
-
 export default function HowItWorks() {
   const { t } = useApp();
+  const steps = [
+    {
+      number: "1",
+      title: t("stepUpload"),
+      icon: UploadCloud,
+      text: t("stepUploadText"),
+      color: "blue"
+    },
+    {
+      number: "2",
+      title: t("stepAnalyze"),
+      icon: Brain,
+      text: t("stepAnalyzeText"),
+      color: "blue"
+    },
+    {
+      number: "3",
+      title: t("stepDecision"),
+      icon: ShieldCheck,
+      text: t("stepDecisionText"),
+      color: "green"
+    }
+  ];
+
   return (
     <section className="mt-5 rounded-lg border border-line bg-panel p-5 shadow-card">
       <div className="mb-6 flex items-center gap-3">
@@ -68,7 +68,7 @@ function Step({ step, showArrow }) {
       </div>
       {showArrow && (
         <div className="hidden text-center text-3xl font-black tracking-[6px] text-brand lg:block">
-          ----→
+          ----&gt;
         </div>
       )}
     </>

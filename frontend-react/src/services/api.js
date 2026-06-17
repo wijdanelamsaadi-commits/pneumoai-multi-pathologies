@@ -12,15 +12,12 @@ export const emptyAnalysisResult = {
     ]
   },
   predictions: {
-    pneumonie: 0,
-    consolidation: 0,
-    epanchement_pleural: 0
+    pneumonie: { probabilite: 0, statut: "" },
+    normal: { probabilite: 0, statut: "" }
   },
   pathologies: [
-    { nom: "Pneumonie", probabilite: 0, description: "Aucune analyse effectu\u00e9e" },
-    { nom: "\u00c9panchement pleural", probabilite: 0, description: "Aucune analyse effectu\u00e9e" },
-    { nom: "Consolidation", probabilite: 0, description: "Aucune analyse effectu\u00e9e" },
-    { nom: "Normal", probabilite: 0, description: "Aucune analyse effectu\u00e9e" }
+    { nom: "Pneumonie", probabilite: 0, statut: "", positive: false, seuil: null, description: "Aucune analyse effectu\u00e9e" },
+    { nom: "Normal", probabilite: 0, statut: "", positive: false, seuil: null, description: "Aucune analyse effectu\u00e9e" }
   ]
 };
 
@@ -51,6 +48,59 @@ export async function analyzeImage(file) {
   const data = await response.json();
   return {
     fileName: file.name,
-    ...data
+    ...toBinaryAnalysisResult(data)
+  };
+}
+
+function toBinaryAnalysisResult(data) {
+  const prediction = data.prediction === "Pneumonia" ? "Pneumonia" : "Normal";
+  const confidence = Number(data.confidence) || 0;
+  const pneumoniaScore = prediction === "Pneumonia" ? confidence : Math.max(0, 100 - confidence);
+  const normalScore = prediction === "Normal" ? confidence : Math.max(0, 100 - confidence);
+
+  return {
+    prediction,
+    confidence,
+    qualite: {
+      score: 0,
+      label: "Analyse binaire Pneumonia / Normal",
+      criteres: [
+        { nom: "Nettet\u00e9", score: 0 },
+        { nom: "Luminosit\u00e9", score: 0 },
+        { nom: "Contraste", score: 0 }
+      ]
+    },
+    predictions: {
+      pneumonie: {
+        probabilite: pneumoniaScore,
+        statut: prediction === "Pneumonia" ? "Positive" : "Negative"
+      },
+      normal: {
+        probabilite: normalScore,
+        statut: prediction === "Normal" ? "Positive" : "Negative"
+      }
+    },
+    pathologies: [
+      {
+        nom: "Pneumonie",
+        probabilite: pneumoniaScore,
+        statut: prediction === "Pneumonia" ? "Positive" : "Negative",
+        positive: prediction === "Pneumonia",
+        seuil: 50,
+        description: prediction === "Pneumonia"
+          ? "Radiographie class\u00e9e comme Pneumonia par le mod\u00e8le binaire."
+          : "Probabilit\u00e9 faible de pneumonie selon le mod\u00e8le binaire."
+      },
+      {
+        nom: "Normal",
+        probabilite: normalScore,
+        statut: prediction === "Normal" ? "Positive" : "Negative",
+        positive: prediction === "Normal",
+        seuil: 50,
+        description: prediction === "Normal"
+          ? "Radiographie class\u00e9e comme Normal par le mod\u00e8le binaire."
+          : "La radiographie n'est pas class\u00e9e comme Normal par le mod\u00e8le binaire."
+      }
+    ]
   };
 }

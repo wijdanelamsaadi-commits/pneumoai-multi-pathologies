@@ -30,7 +30,10 @@ st.set_page_config(
 @st.cache_resource
 def load_resources():
     """Charger le modele et le module qualite (une seule fois)"""
-    model = load_model("models/pneumonia_model.keras")
+    model_path = "models/pneumonia_binary.keras"
+    if not os.path.exists(model_path):
+        model_path = "models/pneumonia_model.keras"
+    model = load_model(model_path)
     quality = QualityAssessment()
     return model, quality
 

@@ -2,7 +2,6 @@ import {
   ArrowRight,
   Activity,
   Clock3,
-  Droplet,
   Image as ImageIcon,
   ShieldCheck,
   Stethoscope,
@@ -22,14 +21,9 @@ export default function HomePage() {
       text: t("pneumoniaText")
     },
     {
-      icon: Droplet,
-      title: t("effusionCard"),
-      text: t("effusionText")
-    },
-    {
-      icon: Activity,
-      title: t("consolidationCard"),
-      text: t("consolidationText")
+      icon: ShieldCheck,
+      title: t("normalCard"),
+      text: t("normalText")
     }
   ];
 
@@ -87,7 +81,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mt-12 grid gap-5 lg:grid-cols-3">
+      <section className="mt-12 grid gap-5 lg:grid-cols-2">
         {diseaseCards.map((card) => {
           const Icon = card.icon;
           return (

@@ -18,8 +18,8 @@ frontend-react/dist/
 # Datasets and heavy archives
 data/
 datasets/
-CheXpert*/
-chexpert*/
+chest_xray/
+Chest_Xray/
 *.zip
 *.tar
 *.tar.gz
