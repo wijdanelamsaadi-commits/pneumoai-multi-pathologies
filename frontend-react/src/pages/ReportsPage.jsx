@@ -3,9 +3,9 @@ import { CardTitle, PageCard, PageIntro } from "../components/PageSection.jsx";
 import { useApp } from "../contexts/AppContext.jsx";
 
 const reports = [
-  { title: "Rapport complet d'analyse", type: "PDF", date: "16 juin 2026", status: "Disponible" },
-  { title: "Synthèse qualité image", type: "PDF", date: "16 juin 2026", status: "Disponible" },
-  { title: "Export des probabilités", type: "CSV", date: "15 juin 2026", status: "Disponible" }
+  { title: "Rapport complet d'analyse", type: "PDF", date: "-", status: "Généré après analyse" },
+  { title: "Synthèse qualité image", type: "PDF", date: "-", status: "Généré après analyse" },
+  { title: "Export des probabilités", type: "CSV", date: "-", status: "Généré après analyse" }
 ];
 
 export default function ReportsPage() {
@@ -29,7 +29,7 @@ export default function ReportsPage() {
                   <p className="mt-2 text-sm text-muted">{report.type} · {report.date}</p>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="rounded-full bg-green-50 px-3 py-2 text-sm font-extrabold text-success">
+                  <span className="rounded-full bg-blue-50 px-3 py-2 text-sm font-extrabold text-brand">
                     {report.status}
                   </span>
                   <button className="grid size-10 place-items-center rounded-md border border-line bg-white text-ink shadow-sm">
@@ -43,19 +43,15 @@ export default function ReportsPage() {
 
         <PageCard>
           <CardTitle icon={ShieldCheck} title={t("clinicalSummary")} />
-          <div className="rounded-lg border border-orange-200 bg-orange-50 p-5">
-            <p className="text-lg font-extrabold text-[#f15a24]">
-              {t("cautiousDiagnosis")}
-            </p>
-            <p className="mt-3 text-sm leading-6 text-[#304062]">
-              {t("clinicalText")}
-            </p>
+          <div className="rounded-lg border border-blue-200 bg-blue-50/60 p-5">
+            <p className="text-lg font-extrabold text-brand">{t("waitingAnalysis")}</p>
+            <p className="mt-3 text-sm leading-6 text-[#304062]">{t("realResultsText")}</p>
           </div>
           <div className="mt-4 grid grid-cols-2 gap-3">
-            <Mini label="Qualité" value="92%" />
-            <Mini label="Pneumonie" value="88%" />
-            <Mini label="Consolidation" value="72%" />
-            <Mini label="Normal" value="12%" />
+            <Mini label="Qualité" value="0%" />
+            <Mini label="Pneumonie" value="0%" />
+            <Mini label="Consolidation" value="0%" />
+            <Mini label="Normal" value="0%" />
           </div>
         </PageCard>
       </section>

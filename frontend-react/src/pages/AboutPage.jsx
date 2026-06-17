@@ -21,7 +21,7 @@ export default function AboutPage() {
           </p>
           <div className="mt-5 rounded-lg border border-blue-200 bg-blue-50 p-4">
             <p className="font-extrabold text-[#103375]">Version 2.0.0</p>
-            <p className="mt-2 text-sm text-muted">Prototype PFE 2026 · données partiellement mockées</p>
+            <p className="mt-2 text-sm text-muted">Prototype PFE 2026 · modèle multi-label CheXpert-small</p>
           </div>
         </PageCard>
 
@@ -29,7 +29,7 @@ export default function AboutPage() {
           <CardTitle icon={Brain} title={t("currentFlow")} />
           <div className="grid gap-3 md:grid-cols-3">
             <Step number="1" title="Upload" text={t("uploadTitle")} />
-            <Step number="2" title={t("navAnalysis")} text="Pneumonie / Normal" />
+            <Step number="2" title={t("navAnalysis")} text="Pneumonie / Consolidation / Épanchement pleural" />
             <Step number="3" title={t("cautiousDiagnosis")} text={t("diagnosisTitle")} />
           </div>
         </PageCard>

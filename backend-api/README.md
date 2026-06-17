@@ -104,15 +104,15 @@ Reponse simplifiee:
     ]
   },
   "predictions": {
-    "pneumonie": 88,
-    "consolidation": 72,
-    "epanchement_pleural": 64
+    "pneumonie": 0,
+    "consolidation": 0,
+    "epanchement_pleural": 0
   },
   "pathologies": [
-    { "nom": "Pneumonie", "probabilite": 88 },
-    { "nom": "Epanchement pleural", "probabilite": 64 },
-    { "nom": "Consolidation", "probabilite": 72 },
-    { "nom": "Normal", "probabilite": 12 }
+    { "nom": "Pneumonie", "probabilite": 0 },
+    { "nom": "Epanchement pleural", "probabilite": 0 },
+    { "nom": "Consolidation", "probabilite": 0 },
+    { "nom": "Normal", "probabilite": 0 }
   ]
 }
 ```
