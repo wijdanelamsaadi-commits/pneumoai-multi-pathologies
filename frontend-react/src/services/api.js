@@ -1,4 +1,5 @@
-const API_URL = "http://127.0.0.1:8000/analyze";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
+const API_URL = `${API_BASE_URL.replace(/\/$/, "")}/analyze`;
 
 export const emptyAnalysisResult = {
   fileName: "",

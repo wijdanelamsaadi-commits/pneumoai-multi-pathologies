@@ -63,6 +63,71 @@ Open:
 http://127.0.0.1:5173
 ```
 
+## Production Deployment
+
+The production React + FastAPI deployment uses:
+
+- Vercel for `frontend-react`
+- Render for `backend-api`
+
+### Render Backend
+
+Create a new Render Web Service from this repository.
+
+Use:
+
+```text
+Repository: wijdanelamsaadi-commits/pneumoai-multi-pathologies
+Branch: main
+Build Command: pip install -r backend-api/requirements.txt
+Start Command: uvicorn main:app --app-dir backend-api --host 0.0.0.0 --port $PORT
+```
+
+Environment variables:
+
+```text
+PYTHON_VERSION=3.11.9
+FRONTEND_ORIGINS=https://your-vercel-app.vercel.app
+```
+
+After deployment, verify:
+
+```text
+https://your-render-service.onrender.com/health
+```
+
+### Vercel Frontend
+
+Create a Vercel project from this repository.
+
+Use:
+
+```text
+Framework Preset: Vite
+Root Directory: frontend-react
+Build Command: npm run build
+Output Directory: dist
+Install Command: npm install
+```
+
+Environment variable:
+
+```text
+VITE_API_BASE_URL=https://your-render-service.onrender.com
+```
+
+After changing `VITE_API_BASE_URL`, redeploy the Vercel project.
+
+### CORS
+
+Once the final Vercel URL is known, update Render:
+
+```text
+FRONTEND_ORIGINS=https://your-vercel-app.vercel.app
+```
+
+The backend also accepts Vercel preview domains through a CORS regex.
+
 ## Training
 
 Dataset expected locally:
