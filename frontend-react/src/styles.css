@@ -1,0 +1,219 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  color: #071333;
+}
+
+html.dark body {
+  background: #08101f;
+  color: #e8eefc;
+}
+
+button,
+label {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.icon-chip {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 8px;
+  color: #2f6df6;
+  background: #eaf2ff;
+}
+
+.hero-xray {
+  border-radius: 16px;
+}
+
+.quality-ring {
+  --score: 92%;
+  position: relative;
+  display: grid;
+  width: 104px;
+  height: 104px;
+  place-items: center;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at center, #ffffff 58%, transparent 59%),
+    conic-gradient(#34a853 var(--score), #dbe5f4 0);
+}
+
+.quality-ring::after {
+  position: absolute;
+  inset: 12px;
+  content: "";
+  border-radius: inherit;
+  border: 7px solid #ffffff;
+}
+
+.quality-ring span {
+  position: relative;
+  z-index: 1;
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.badge-danger {
+  color: #ef3d4c;
+  background: #fde6e9;
+  border: 1px solid #facbd1;
+}
+
+.badge-warning {
+  color: #e86e13;
+  background: #fff0df;
+  border: 1px solid #ffd8ad;
+}
+
+.badge-success {
+  color: #238144;
+  background: #e7f6ed;
+  border: 1px solid #caead5;
+}
+
+.bar-danger {
+  background: #ef3d4c;
+}
+
+.bar-warning {
+  background: #f59e1b;
+}
+
+.bar-success {
+  background: #34a853;
+}
+
+.xray-placeholder {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 49% 100%, rgba(255, 255, 255, 0.72) 0 24%, transparent 25%),
+    linear-gradient(90deg, transparent 0 38%, rgba(235, 235, 235, 0.55) 40% 44%, rgba(255, 255, 255, 0.75) 48% 52%, rgba(235, 235, 235, 0.55) 56% 60%, transparent 62%),
+    radial-gradient(ellipse at 33% 49%, rgba(230, 230, 230, 0.55) 0 23%, rgba(94, 94, 94, 0.28) 24% 39%, transparent 40%),
+    radial-gradient(ellipse at 67% 49%, rgba(230, 230, 230, 0.55) 0 23%, rgba(94, 94, 94, 0.28) 24% 39%, transparent 40%),
+    radial-gradient(ellipse at 50% 22%, rgba(255, 255, 255, 0.45) 0 42%, transparent 43%),
+    linear-gradient(180deg, #2b2b2b 0%, #0b0b0b 100%);
+  filter: grayscale(1);
+}
+
+.xray-placeholder::before,
+.xray-placeholder::after {
+  position: absolute;
+  top: 18px;
+  width: 45%;
+  height: 105%;
+  content: "";
+  border-radius: 48% 48% 35% 35%;
+  border: 15px solid rgba(255, 255, 255, 0.26);
+  filter: blur(1px);
+}
+
+.xray-placeholder::before {
+  left: 5%;
+  transform: rotate(-9deg);
+}
+
+.xray-placeholder::after {
+  right: 5%;
+  transform: rotate(9deg);
+}
+
+@media (max-width: 767px) {
+  .quality-ring {
+    width: 92px;
+    height: 92px;
+  }
+}
+
+html.dark .app-shell {
+  background: radial-gradient(circle at top left, #15233c 0, #0b1220 34%, #070d18 100%) !important;
+  color: #e8eefc;
+}
+
+html.dark .bg-white,
+html.dark .bg-panel,
+html.dark .bg-white\/88 {
+  background-color: rgba(15, 23, 42, 0.94) !important;
+}
+
+html.dark .bg-soft,
+html.dark .bg-blue-50,
+html.dark .bg-blue-50\/40,
+html.dark .bg-blue-50\/60,
+html.dark .bg-blue-50\/70 {
+  background-color: rgba(30, 64, 175, 0.18) !important;
+}
+
+html.dark .bg-orange-50,
+html.dark .bg-orange-50\/80 {
+  background-color: rgba(154, 52, 18, 0.25) !important;
+}
+
+html.dark .bg-green-50 {
+  background-color: rgba(22, 101, 52, 0.25) !important;
+}
+
+html.dark .bg-red-50 {
+  background-color: rgba(127, 29, 29, 0.25) !important;
+}
+
+html.dark .text-ink,
+html.dark .text-\[\#071333\],
+html.dark .text-\[\#103375\],
+html.dark .text-\[\#304062\],
+html.dark .text-\[\#34436a\] {
+  color: #e8eefc !important;
+}
+
+html.dark .text-muted {
+  color: #aebce0 !important;
+}
+
+html.dark .border-line,
+html.dark .border-line\/80,
+html.dark .border-blue-200,
+html.dark .border-green-200,
+html.dark .border-orange-200,
+html.dark .border-red-200 {
+  border-color: rgba(125, 152, 199, 0.32) !important;
+}
+
+html.dark .shadow-card,
+html.dark .shadow-sm,
+html.dark .shadow-lg,
+html.dark .shadow-xl {
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.28) !important;
+}
+
+html.dark .icon-chip,
+html.dark .bg-\[\#f1f5fb\] {
+  background: rgba(59, 130, 246, 0.16) !important;
+  color: #8fb5ff !important;
+}
+
+html.dark .quality-ring {
+  background:
+    radial-gradient(circle at center, #0f172a 58%, transparent 59%),
+    conic-gradient(#34a853 var(--score), #334155 0);
+}
+
+html.dark .quality-ring::after {
+  border-color: #0f172a;
+}
+
+html.dark option {
+  background: #0f172a;
+  color: #e8eefc;
+}

@@ -1,0 +1,58 @@
+# Python environments
+venv/
+.venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+
+# Node / React
+node_modules/
+frontend-react/node_modules/
+frontend-react/dist/
+
+# Datasets and heavy archives
+data/
+datasets/
+CheXpert*/
+chexpert*/
+*.zip
+*.tar
+*.tar.gz
+*.7z
+
+# Model formats that are often too large for GitHub
+*.h5
+*.hdf5
+
+# Secrets and local config
+kaggle.json
+.env
+.env.*
+*.pem
+*.key
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+.tools/
+streamlit.log
+streamlit.err.log
+backend-api/*.log
+backend-api/*.err.log
+frontend-react/*.log
+frontend-react/*.err.log
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Keep small .keras demo models when under GitHub limits.
+# Do not commit large trained models; use releases or external storage if needed.
